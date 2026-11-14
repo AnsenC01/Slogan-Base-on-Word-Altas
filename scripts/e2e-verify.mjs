@@ -6,6 +6,7 @@
 import automator from 'miniprogram-automator';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const PROJECT = fileURLToPath(new URL('..', import.meta.url)).replace(/\/$/, '');
@@ -61,10 +62,41 @@ const isInvisible = (bg) => {
   );
 }
 
-const mp = await automator.launch({
-  cliPath: '/Applications/wechatwebdevtools.app/Contents/MacOS/cli',
-  projectPath: PROJECT
-});
+/**
+ * 定位微信开发者工具 CLI，按以下顺序：
+ *  1) WECHAT_DEVTOOLS_CLI 环境变量（自定义安装位置）；
+ *  2) 按平台探测官方标准安装位置，实现免配置运行；
+ *  3) 都未命中时给出明确提示。
+ * 路径片段由平台常量与运行时信息拼出，仓库内不固化任何开发机私有路径。
+ */
+function defaultCliCandidates() {
+  const home = os.homedir();
+  if (process.platform === 'darwin') {
+    const bundle = path.join('wechatwebdevtools.app', 'Contents', 'MacOS', 'cli');
+    return [path.join(path.sep, 'Applications', bundle), path.join(home, 'Applications', bundle)];
+  }
+  if (process.platform === 'win32') {
+    const tail = path.join('Tencent', '微信web开发者工具', 'cli.bat');
+    return [process.env.ProgramFiles, process.env['ProgramFiles(x86)']]
+      .filter(Boolean)
+      .map((root) => path.join(root, tail));
+  }
+  const tail = path.join('微信web开发者工具', 'cli');
+  return [path.join(home, 'Applications', tail), path.join(home, '.local', 'share', tail)];
+}
+
+const cliPath =
+  process.env.WECHAT_DEVTOOLS_CLI || defaultCliCandidates().find((candidate) => fs.existsSync(candidate));
+
+if (!cliPath || !fs.existsSync(cliPath)) {
+  console.error(
+    '未找到微信开发者工具 CLI：请安装官方开发者工具，或设置 WECHAT_DEVTOOLS_CLI 指向 cli 可执行文件。'
+  );
+  process.exit(1);
+}
+
+console.log('[e2e] 已定位开发者工具 CLI');
+const mp = await automator.launch({ cliPath, projectPath: PROJECT });
 
 const consoleLogs = [];
 mp.on('console', (msg) => consoleLogs.push(`[${msg.type}] ${msg.args?.join(' ')}`));

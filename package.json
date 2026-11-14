@@ -2,7 +2,20 @@
   "name": "shici-wordiary",
   "version": "1.1.0",
   "private": true,
-  "description": "拾词Wordiary 微信小程序版 MVP",
+  "description": "拾词Wordiary 微信小程序（插画词卡 / FSRS 复习 / 短文记词）",
+  "license": "MIT",
+  "keywords": [
+    "wechat-miniprogram",
+    "typescript",
+    "fsrs",
+    "vocabulary",
+    "ielts",
+    "wordiary"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnsenC01/Wordiary.git"
+  },
   "scripts": {
     "build:vocab": "node scripts/build-vocab.mjs",
     "build:passages": "node scripts/build-passages.mjs",

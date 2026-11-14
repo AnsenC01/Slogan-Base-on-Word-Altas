@@ -1,0 +1,19 @@
+# 统一文本换行，避免跨平台检出差异
+* text=auto eol=lf
+
+# 二进制资源不做文本转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.mp3 binary
+
+# 生成文件在语言统计与 diff 中折叠
+miniprogram/data/vocab-index.ts linguist-generated
+miniprogram/data/passages.ts linguist-generated
+miniprogram/data/vocab-chunks.ts linguist-generated
+miniprogram/data/vocab-chunk-loaders.ts linguist-generated
+miniprogram/vocab-*/chunks/*.js linguist-generated
+package-lock.json linguist-generated
