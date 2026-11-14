@@ -1,0 +1,92 @@
+<view class="page settings">
+  <view class="page-head">
+    <text class="eyebrow">Settings</text>
+    <text class="display">我的</text>
+    <text class="lede">本地优先，无需登录，进度只保存在本机。</text>
+  </view>
+
+  <view class="panel section">
+    <text class="section-title">学习进度</text>
+    <view class="section-head-inline">
+      <text class="progress-label">已背单词</text>
+      <text class="progress-count">{{progressLearned}} / {{progressTotal}}</text>
+    </view>
+    <view class="progress-track">
+      <view class="progress-fill" style="width: {{progressPercent}}%"></view>
+    </view>
+    <view class="section-head-inline">
+      <text class="progress-label">完成度</text>
+      <text class="section-value">{{progressPercent}}%</text>
+    </view>
+    <text class="section-note" wx:if="{{progressDays > 0}}">按当前节奏（每日 {{dailyNewWords}} 个新词），预计还需 {{progressDays}} 天学完全部单词。</text>
+    <text class="section-note" wx:else>全部单词已学完，按 FSRS 安排坚持复习即可。</text>
+    <button class="btn-ghost" style="margin-top: 24rpx" bindtap="openProgress">查看话题进度</button>
+  </view>
+
+  <view class="panel section">
+    <text class="section-title">每日新词</text>
+    <view class="chips">
+      <text
+        wx:for="{{dailyOptions}}"
+        wx:key="*this"
+        class="tag {{dailyNewWords === item ? 'is-on' : ''}}"
+        data-value="{{item}}"
+        bindtap="setDaily"
+      >{{item}}</text>
+    </view>
+  </view>
+
+  <view class="panel section">
+    <view class="section-head-inline">
+      <text class="section-title">目标记忆率</text>
+      <text class="section-value">{{retentionText}}</text>
+    </view>
+    <slider
+      min="80"
+      max="95"
+      step="1"
+      value="{{retentionValue}}"
+      activeColor="#AD5038"
+      backgroundColor="#EFE5D5"
+      block-size="24"
+      bindchange="onRetentionChange"
+    />
+    <text class="section-note">记忆率越高，复习间隔越短、次数越多。</text>
+  </view>
+
+  <view class="panel section">
+    <text class="section-title">发音偏好</text>
+    <view class="chips">
+      <text class="tag {{accent === 'uk' ? 'is-on' : ''}}" data-accent="uk" bindtap="setAccent">英音</text>
+      <text class="tag {{accent === 'us' ? 'is-on' : ''}}" data-accent="us" bindtap="setAccent">美音</text>
+    </view>
+  </view>
+
+  <view class="panel section">
+    <text class="section-title">分享</text>
+    <button class="btn-primary" open-type="share">推荐给朋友</button>
+    <text class="section-note">转发小程序给好友，一起用拾词背单词。</text>
+  </view>
+
+  <view class="panel section">
+    <text class="section-title">数据管理</text>
+    <button class="btn-ghost" bindtap="exportData">导出 JSON 到剪贴板</button>
+
+    <textarea
+      class="import-area"
+      value="{{importText}}"
+      placeholder="粘贴导出的 JSON 备份"
+      maxlength="-1"
+      bindinput="onImportInput"
+    />
+    <button class="btn-primary" bindtap="importFromText">校验并导入粘贴内容</button>
+    <button class="btn-ghost" bindtap="chooseFile">选择 JSON 文件导入</button>
+    <button class="btn-danger" bindtap="clearAll">清除本地数据</button>
+    <text class="section-note">导入会覆盖当前数据；非法内容不会被写入。</text>
+  </view>
+
+  <view class="footnote-wrap">
+    <text class="footnote">拾词Wordiary · 本地优先 MVP</text>
+    <text class="footnote">词库数据来源：Word Atlas 开源数据集（CC BY 4.0）</text>
+  </view>
+</view>

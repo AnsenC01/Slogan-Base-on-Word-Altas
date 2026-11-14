@@ -1,0 +1,54 @@
+<view class="page home">
+  <view class="page-head">
+    <text class="eyebrow">拾词Wordiary</text>
+    <text class="display">今日学习</text>
+    <text class="lede">{{today}} · 连续 {{streakDays}} 天</text>
+  </view>
+
+  <view class="today-grid">
+    <view class="stat-card">
+      <text class="stat-label">今日新词</text>
+      <view class="stat-value">
+        <text class="stat-number">{{todayNew}}</text>
+        <text class="stat-total">/ {{newGoal}}</text>
+      </view>
+      <text class="stat-note">还可学 {{newRemaining}} 个</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-label">待复习</text>
+      <view class="stat-value">
+        <text class="stat-number">{{due}}</text>
+        <text class="stat-total">词</text>
+      </view>
+      <text class="stat-note">{{due > 0 ? '趁记忆还热' : '暂时清空'}}</text>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="btn-primary" bindtap="startStudy" disabled="{{newRemaining <= 0}}">开始今日学习</button>
+    <button class="btn-ghost" bindtap="startReview">开始复习</button>
+  </view>
+
+  <view class="panel quiz-panel">
+    <view class="quiz-head">
+      <text class="quiz-title">单词小测</text>
+      <text class="quiz-count">今日已学 {{quizCount}} 词</text>
+    </view>
+    <text class="quiz-note">用今天学过的词（含复习）自测掌握情况，先回忆再看释义，不计入学习记录</text>
+    <button class="wb-primary quiz-btn" bindtap="startDailyQuiz" disabled="{{quizCount <= 0}}">今日单词小测（{{quizCount}}）</button>
+  </view>
+
+  <view class="panel progress-panel">
+    <view class="progress-head">
+      <text class="stat-label">总进度</text>
+      <text class="stat-note">{{learned}} / {{totalWords}} 词 · {{percent}}%</text>
+    </view>
+    <view class="bar">
+      <view class="bar-fill" style="width: {{percent}}%"></view>
+    </view>
+    <view class="progress-foot">
+      <text class="stat-note">累计正确率 {{accuracy}}%</text>
+      <text class="stat-note">本地保存 · 无需登录</text>
+    </view>
+  </view>
+</view>

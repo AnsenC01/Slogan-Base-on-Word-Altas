@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "极速刷词",
+  "usingComponents": {
+    "word-text": "/components/word-text/word-text",
+    "word-popup": "/components/word-popup/word-popup"
+  }
+}

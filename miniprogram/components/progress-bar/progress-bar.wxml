@@ -1,0 +1,3 @@
+<view class="pb">
+  <view class="pb-fill {{tone}}" style="width: {{value}}%"></view>
+</view>

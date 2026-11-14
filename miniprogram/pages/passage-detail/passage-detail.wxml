@@ -1,0 +1,37 @@
+<view class="page passage-detail">
+  <view class="panel detail-head">
+    <text class="d-no">{{groupLabel}} · {{seqText}}</text>
+    <text class="d-title-en">{{titleEn}}</text>
+    <text class="d-title-zh">{{titleZh}}</text>
+    <view class="toolbar">
+      <view class="chip {{showZh ? 'is-on' : ''}}" bindtap="toggleZh">{{showZh ? '隐藏中文' : '显示中文'}}</view>
+      <view class="chip {{showGloss ? 'is-on' : ''}}" bindtap="toggleGloss">{{showGloss ? '隐藏词注' : '显示词注'}}</view>
+      <view class="chip is-blue {{showKw ? 'is-on' : ''}}" bindtap="toggleKw">重点词</view>
+    </view>
+    <view class="kw-legend"><text class="kw-swatch"></text><text class="kw-legend-text">{{kwText}}</text></view>
+  </view>
+
+  <view class="article"><text class="article-body"><block wx:for="{{segments}}" wx:key="k" wx:for-item="seg"><text wx:if="{{seg.t === 1}}" class="kw {{showKw ? '' : 'is-plain'}}" data-ki="{{seg.ki}}" bindtap="onKeywordTap">{{seg.x}}</text><text wx:elif="{{seg.t === 2}}" class="kw-gloss {{showGloss && showKw ? '' : 'is-hidden'}}">{{seg.x}}</text><text wx:else>{{seg.x}}</text></block></text></view>
+
+  <view wx:if="{{showZh}}" class="article-zh">
+    <view wx:for="{{zhLines}}" wx:key="k" class="zh-line"><text>{{item.x}}</text></view>
+  </view>
+
+  <view class="pager">
+    <button class="pager-btn {{!prevId ? 'is-disabled' : ''}}" disabled="{{!prevId}}" bindtap="goPrev">‹ 上一篇</button>
+    <text class="pager-info">{{pagerText}}</text>
+    <button class="pager-btn {{!nextId ? 'is-disabled' : ''}}" disabled="{{!nextId}}" bindtap="goNext">下一篇 ›</button>
+  </view>
+
+  <view wx:if="{{activeKw}}" class="kw-modal" bindtap="closeKw" catchtouchmove="noop">
+    <view class="kw-card" catchtap="noop">
+      <view class="kw-card-head"><text class="kw-card-word">{{activeKw.w}}</text><text class="kw-card-cefr">{{activeKw.cefr}}</text></view>
+      <text class="kw-card-ipa">{{activeKw.ipa}}</text>
+      <text class="kw-card-hint">以下为词库义项，可能与文中语境不完全一致</text>
+      <view wx:for="{{activeKw.senses}}" wx:key="k" class="kw-sense">
+        <text class="kw-sense-pos">{{item.pos}}</text><text class="kw-sense-zh">{{item.zh}}</text>
+      </view>
+      <view class="kw-card-close" bindtap="closeKw">关闭</view>
+    </view>
+  </view>
+</view>

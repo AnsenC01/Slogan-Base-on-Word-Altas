@@ -1,0 +1,20 @@
+.wt {
+  display: inline;
+}
+
+.wt-token {
+  display: inline;
+}
+
+/* 命中词库的词：淡虚线提示可点；提升层级以避开词卡左右隐形热区（z-index 2）。
+   与首次引导层同为 3，引导层在 DOM 中靠后，首次进入时仍由引导层优先接收点击。 */
+.wt-token.is-tap {
+  position: relative;
+  z-index: 3;
+  border-bottom: 1rpx dotted #b9a98f;
+}
+
+.wt-token.is-tap.is-active {
+  background: #dce8f5;
+  border-radius: 4rpx;
+}

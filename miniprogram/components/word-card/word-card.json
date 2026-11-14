@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "word-text": "/components/word-text/word-text",
+    "word-popup": "/components/word-popup/word-popup"
+  }
+}

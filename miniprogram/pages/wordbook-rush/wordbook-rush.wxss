@@ -1,0 +1,287 @@
+.rush-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter {
+  font-size: 24rpx;
+  color: #8d8377;
+}
+
+.bar {
+  height: 8rpx;
+  border-radius: 999rpx;
+  background: #efe5d5;
+  overflow: hidden;
+  margin: 16rpx 0 28rpx;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #2f8f6b;
+}
+
+.rush-card {
+  background: #fffcf6;
+  border: 1rpx solid #e7ddcd;
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  box-shadow: 0 8rpx 24rpx rgba(23, 40, 59, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  min-height: 400rpx;
+}
+
+.rush-word {
+  font-size: 64rpx;
+  font-weight: 600;
+  color: #17283b;
+  overflow-wrap: break-word;
+}
+
+.rush-phonetic {
+  font-size: 26rpx;
+  color: #6f665c;
+}
+
+.rush-tags {
+  display: flex;
+  gap: 12rpx;
+}
+
+/* 展开后的完整释义：全义项 / 搭配 / 双例句 / 词族 / 同反义词 / 辨析 */
+.r-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8rpx;
+}
+
+.r-detail-title {
+  font-size: 24rpx;
+  letter-spacing: 2rpx;
+  color: #ad5038;
+}
+
+.r-collapse {
+  font-size: 22rpx;
+  color: #2f8f6b;
+  padding: 4rpx 16rpx;
+  border: 1rpx solid #2f8f6b;
+  border-radius: 999rpx;
+}
+
+.r-sense-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.r-sense {
+  display: flex;
+  gap: 14rpx;
+  padding: 16rpx;
+  background: #f4ece0;
+  border-radius: 14rpx;
+}
+
+.r-sense-no {
+  flex: none;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: #17283b;
+  color: #fffdf9;
+  font-size: 20rpx;
+  line-height: 36rpx;
+  text-align: center;
+}
+
+.r-sense-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.r-sense-zh {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8rpx;
+  font-size: 28rpx;
+  color: #17283b;
+  overflow-wrap: break-word;
+}
+
+.r-sense-pos {
+  font-size: 20rpx;
+  color: #6f665c;
+  background: #efe5d5;
+  border-radius: 6rpx;
+  padding: 2rpx 8rpx;
+}
+
+.r-sense-en {
+  font-size: 22rpx;
+  color: #6f665c;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.r-fallback {
+  font-size: 28rpx;
+  color: #17283b;
+}
+
+.r-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  margin-top: 16rpx;
+}
+
+.r-meta-title {
+  font-size: 21rpx;
+  letter-spacing: 2rpx;
+  color: #ad5038;
+}
+
+.r-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+.r-chip {
+  font-size: 22rpx;
+  color: #4c463f;
+  background: #efe5d5;
+  border-radius: 10rpx;
+  padding: 6rpx 14rpx;
+  overflow-wrap: break-word;
+}
+
+.r-sentence {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-top: 16rpx;
+  padding: 20rpx;
+  background: #f4ece0;
+  border-radius: 14rpx;
+}
+
+.r-sentence-label {
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
+  color: #ad5038;
+}
+
+.r-sentence-en {
+  font-size: 25rpx;
+  color: #17283b;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.r-sentence-cn {
+  font-size: 22rpx;
+  color: #6f665c;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.r-tip {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-top: 16rpx;
+  padding: 18rpx;
+  background: #fbf6ee;
+  border-left: 4rpx solid #ad5038;
+  border-radius: 8rpx;
+}
+
+.r-tip-note {
+  border-left-color: #17283b;
+}
+
+.r-tip-title {
+  font-size: 21rpx;
+  letter-spacing: 2rpx;
+  color: #ad5038;
+}
+
+.r-tip-text {
+  font-size: 23rpx;
+  color: #6f665c;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.rush-mask {
+  padding: 24rpx;
+  border-radius: 16rpx;
+  background: #efe9df;
+  color: #a89e91;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.rush-audio {
+  margin-top: 28rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #2f8f6b;
+  border: 1rpx solid #2f8f6b;
+  border-radius: 999rpx;
+  padding: 20rpx 0;
+}
+
+.rush-audio.is-playing {
+  background: #e6f4ed;
+}
+
+.rush-actions {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 32rpx;
+}
+
+.rush-actions > button {
+  flex: 1;
+  min-width: 0;
+  font-size: 28rpx;
+  padding: 22rpx 0;
+}
+
+.hint {
+  display: block;
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #8d8377;
+}
+
+.result {
+  padding-top: 120rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.result-actions {
+  margin-top: 48rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+/* 本轮全部认识时置灰，但保留按钮位置，点击会给出提示 */
+.result-actions .wb-outline.is-off {
+  opacity: 0.45;
+}

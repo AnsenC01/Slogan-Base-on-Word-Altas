@@ -1,0 +1,95 @@
+<view class="page review" wx:if="{{!empty && !finished && current && !loading}}">
+  <view class="review-head">
+    <view>
+      <text class="eyebrow">Review</text>
+      <text class="display">到期复习</text>
+    </view>
+    <text class="counter">{{index + 1}} / {{total}}</text>
+  </view>
+  <view class="bar">
+    <view class="bar-fill" style="width: {{(index / total) * 100}}%"></view>
+  </view>
+
+  <view class="card-wrap">
+    <word-card word="{{current}}" showMeaning="{{showAnswer}}" />
+    <!-- 词卡左右隐形点击热区：不显示任何视觉元素；右=认识、左=不认识，与下方快捷评分按钮等价 -->
+    <view class="tap-zone tap-zone-left" data-rating="unknown" bindtap="onZoneRate"></view>
+    <view class="tap-zone tap-zone-right" data-rating="known" bindtap="onZoneRate"></view>
+
+    <!-- 仅第一次使用时出现：左右两个透明虚线框标出热区位置与含义，点任意处关闭；热区本体仍不可见 -->
+    <view wx:if="{{showTapHint}}" class="tap-guide" catchtap="dismissTapHint">
+      <view class="tap-guide-side tap-guide-left" data-rating="unknown" catchtap="onGuideRate">
+        <text class="tap-guide-word">不</text>
+        <text class="tap-guide-word">认</text>
+        <text class="tap-guide-word">识</text>
+      </view>
+      <view class="tap-guide-side tap-guide-right" data-rating="known" catchtap="onGuideRate">
+        <text class="tap-guide-word">认</text>
+        <text class="tap-guide-word">识</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="audio-group">
+    <audio-button class="audio-segment" grouped="{{true}}" label="英音" url="{{current.audioUK}}" />
+    <view class="audio-divider"></view>
+    <audio-button class="audio-segment" grouped="{{true}}" label="美音" url="{{current.audioUS}}" />
+    <view class="audio-divider"></view>
+    <audio-button class="audio-segment" grouped="{{true}}" label="例句" url="{{current.audioExample}}" />
+  </view>
+
+  <view wx:if="{{!showAnswer}}" class="reveal-area">
+    <button class="btn-ghost" bindtap="toggleAnswer">显示答案并评分</button>
+    <!-- 单手拇指易够到右侧：不认识（左）→ 模糊（中）→ 认识（右，主操作高亮） -->
+    <view class="quick-row">
+      <button class="quick-btn" data-rating="unknown" bindtap="onQuickRate">不认识</button>
+      <button class="quick-btn" data-rating="unsure" bindtap="onQuickRate">模糊</button>
+      <button class="quick-btn is-known" data-rating="known" bindtap="onQuickRate">认识</button>
+    </view>
+    <text class="hint">先在心里回忆这个词</text>
+  </view>
+
+  <view wx:else class="rate-area">
+    <text class="hint">这次记得怎么样？</text>
+    <view class="rate-grid">
+      <button class="rate-btn again" data-rating="again" bindtap="onRate">
+        <text class="rate-label">忘记</text>
+        <text class="rate-sub">重来</text>
+      </button>
+      <button class="rate-btn hard" data-rating="hard" bindtap="onRate">
+        <text class="rate-label">困难</text>
+        <text class="rate-sub">有点吃力</text>
+      </button>
+      <button class="rate-btn good" data-rating="good" bindtap="onRate">
+        <text class="rate-label">良好</text>
+        <text class="rate-sub">记得</text>
+      </button>
+      <button class="rate-btn easy" data-rating="easy" bindtap="onRate">
+        <text class="rate-label">容易</text>
+        <text class="rate-sub">很轻松</text>
+      </button>
+    </view>
+  </view>
+</view>
+
+<view class="page result" wx:if="{{finished}}">
+  <text class="eyebrow">Round Complete</text>
+  <text class="display">复习完成</text>
+  <text class="lede">共复习 {{reviewed}} 个词，记得 {{correct}} 个。</text>
+  <button class="btn-primary" bindtap="backHome">返回首页</button>
+</view>
+
+<view class="page" wx:if="{{loading}}">
+  <view class="empty">
+    <text class="display">正在加载词库…</text>
+    <text class="lede">首次加载需下载词条数据，请稍候。</text>
+  </view>
+</view>
+
+<view class="page" wx:if="{{empty}}">
+  <view class="empty">
+    <text class="display">暂无到期复习</text>
+    <text class="lede">按当前记忆率，还没有到期的词卡。</text>
+  </view>
+  <button class="btn-ghost" bindtap="backHome">返回</button>
+</view>

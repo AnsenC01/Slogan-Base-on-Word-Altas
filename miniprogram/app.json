@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/study/study",
+    "pages/practice/practice",
+    "pages/review/review",
+    "pages/library/library",
+    "pages/word-detail/word-detail",
+    "pages/progress/progress",
+    "pages/settings/settings",
+    "pages/wordbook/wordbook",
+    "pages/wordbook-list/wordbook-list",
+    "pages/wordbook-rush/wordbook-rush",
+    "pages/passage-list/passage-list",
+    "pages/passage-detail/passage-detail"
+  ],
+  "window": {
+    "navigationBarTitleText": "拾词Wordiary",
+    "navigationBarBackgroundColor": "#F7F2E9",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F2E9",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#7A7168",
+    "selectedColor": "#17283B",
+    "backgroundColor": "#FBF8F2",
+    "borderStyle": "white",
+    "custom": true,
+    "list": [
+      { "pagePath": "pages/home/home", "text": "学习", "iconPath": "assets/tab/home.png", "selectedIconPath": "assets/tab/home-active.png" },
+      { "pagePath": "pages/passage-list/passage-list", "text": "短文记词", "iconPath": "assets/tab/passage.png", "selectedIconPath": "assets/tab/passage-active.png" },
+      { "pagePath": "pages/wordbook/wordbook", "text": "生词本", "iconPath": "assets/tab/wordbook.png", "selectedIconPath": "assets/tab/wordbook-active.png" },
+      { "pagePath": "pages/library/library", "text": "词库", "iconPath": "assets/tab/library.png", "selectedIconPath": "assets/tab/library-active.png" },
+      { "pagePath": "pages/settings/settings", "text": "我的", "iconPath": "assets/tab/settings.png", "selectedIconPath": "assets/tab/settings-active.png" }
+    ]
+  },
+  "subPackages": [
+    {
+      "root": "vocab-a",
+      "pages": []
+    },
+    {
+      "root": "vocab-b",
+      "pages": []
+    },
+    {
+      "root": "vocab-c",
+      "pages": []
+    },
+    {
+      "root": "vocab-d",
+      "pages": []
+    }
+  ],
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,124 @@
+/* 为悬浮自定义 tabBar 留出底部空间，避免遮挡页面末尾内容 */
+.page { padding-bottom: 180rpx; }
+
+/* 全局 .page-head 内 text 是行内元素，标题/日期会挤成一行；首页局部块级化修复 */
+.page-head .eyebrow,
+.page-head .display,
+.page-head .lede {
+  display: block;
+}
+
+.today-grid {
+  display: flex;
+  gap: 20rpx;
+}
+
+.stat-card {
+  flex: 1;
+  background: #fffcf6;
+  border: 1rpx solid #e7ddcd;
+  border-radius: 20rpx;
+  padding: 26rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+  color: #8d8377;
+}
+
+.stat-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
+.stat-number {
+  font-size: 56rpx;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.stat-total {
+  font-size: 24rpx;
+  color: #8d8377;
+}
+
+.stat-note {
+  font-size: 22rpx;
+  color: #8d8377;
+}
+
+.actions {
+  margin: 36rpx 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.quiz-panel {
+  margin-bottom: 28rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.quiz-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.quiz-title {
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.quiz-count {
+  font-size: 24rpx;
+  color: #8d8377;
+}
+
+.quiz-note {
+  font-size: 24rpx;
+  color: #6f665c;
+  line-height: 1.6;
+}
+
+.quiz-btn {
+  margin-top: 4rpx;
+}
+
+.quiz-btn[disabled] {
+  opacity: 0.45;
+}
+
+.progress-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.progress-head,
+.progress-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bar {
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: #efe5d5;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #ad5038;
+  border-radius: 999rpx;
+  transition: width 0.3s ease;
+}

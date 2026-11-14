@@ -1,0 +1,1 @@
+<text class="wt"><block wx:for="{{tokens}}" wx:key="key"><text wx:if="{{item.hit}}" class="wt-token is-tap {{item.id === activeId ? 'is-active' : ''}}" data-id="{{item.id}}" data-raw="{{item.raw}}" catchtap="onTokenTap">{{item.text}}</text><text wx:else class="wt-token">{{item.text}}</text></block></text>

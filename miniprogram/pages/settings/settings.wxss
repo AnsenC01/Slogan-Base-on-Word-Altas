@@ -1,0 +1,100 @@
+/* 为悬浮自定义 tabBar 留出底部空间，避免遮挡页面末尾内容 */
+.page { padding-bottom: 180rpx; }
+
+.section {
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.section-head-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-value {
+  font-size: 28rpx;
+  color: #ad5038;
+}
+
+.progress-label {
+  font-size: 24rpx;
+  color: #6f665c;
+}
+
+.progress-count {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #17283b;
+}
+
+.progress-track {
+  height: 16rpx;
+  background: #efe5d5;
+  border-radius: 999rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #ad5038;
+  border-radius: 999rpx;
+}
+
+.section-note {
+  font-size: 22rpx;
+  color: #8d8377;
+  line-height: 1.5;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.chips .tag {
+  margin-right: 0;
+  padding: 10rpx 24rpx;
+}
+
+.import-area {
+  width: 100%;
+  height: 220rpx;
+  background: #f9f4ea;
+  border: 1rpx solid #e7ddcd;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  font-size: 22rpx;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.btn-danger {
+  background: transparent;
+  color: #ad5038;
+  border: 1rpx solid #d8b8a8;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  padding: 22rpx 0;
+  text-align: center;
+}
+
+.btn-danger::after {
+  border: none;
+}
+
+.footnote {
+  display: block;
+  text-align: center;
+  font-size: 20rpx;
+  color: #a89e91;
+  margin-top: 24rpx;
+}

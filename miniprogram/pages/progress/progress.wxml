@@ -1,0 +1,54 @@
+<view class="page progress">
+  <view class="page-head">
+    <text class="eyebrow">Progress</text>
+    <text class="display">进度</text>
+    <text class="lede">连续学习 {{streakDays}} 天 · 共 {{totalWords}} 词</text>
+  </view>
+
+  <view class="summary panel">
+    <view class="summary-top">
+      <view class="summary-main">
+        <text class="big-number">{{learned}}</text>
+        <text class="big-total">/ {{totalWords}}</text>
+      </view>
+      <text class="summary-percent">{{percent}}%</text>
+    </view>
+    <progress-bar value="{{percent}}" />
+    <view class="summary-stats">
+      <view class="mini-stat">
+        <text class="mini-number">{{todayNew}}</text>
+        <text class="mini-label">今日新词</text>
+      </view>
+      <view class="mini-stat">
+        <text class="mini-number">{{due}}</text>
+        <text class="mini-label">待复习</text>
+      </view>
+      <view class="mini-stat">
+        <text class="mini-number">{{accuracy}}%</text>
+        <text class="mini-label">累计正确率</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-title">话题进度</text>
+    <text class="section-note">点击查看该话题词条</text>
+  </view>
+
+  <view class="topic-list">
+    <view
+      class="topic-item"
+      wx:for="{{topics}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onTopicTap"
+    >
+      <view class="topic-top">
+        <text class="topic-name">{{item.name}}</text>
+        <text class="topic-percent">{{item.percent}}%</text>
+      </view>
+      <progress-bar value="{{item.percent}}" tone="ink" />
+      <text class="topic-counts">{{item.countsText}}</text>
+    </view>
+  </view>
+</view>

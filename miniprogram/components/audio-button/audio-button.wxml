@@ -1,0 +1,4 @@
+<view class="audio-btn {{tone}} status-{{status}} {{grouped ? 'is-grouped' : ''}}" bindtap="onTap" hover-class="audio-pressed">
+  <view class="audio-highlight"></view>
+  <text class="audio-label">{{label}}</text>
+</view>

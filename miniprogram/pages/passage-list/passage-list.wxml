@@ -1,0 +1,40 @@
+<view class="page passage-list">
+  <view class="page-head">
+    <text class="eyebrow">拾词Wordiary</text>
+    <text class="display">短文记词</text>
+    <text class="lede">{{total}} 篇短文 · 中英对照阅读</text>
+  </view>
+
+  <view class="segment">
+    <view
+      wx:for="{{groups}}"
+      wx:key="key"
+      class="seg {{group === item.key ? 'is-on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onGroupTap"
+    >{{item.label}} {{item.count}}</view>
+  </view>
+
+  <view class="list-tip">
+    <text class="kw-swatch"></text>
+    <text>重点词取自词库，点击查看词典释义</text>
+  </view>
+
+  <view class="list">
+    <view
+      wx:for="{{list}}"
+      wx:key="id"
+      class="item"
+      data-id="{{item.id}}"
+      bindtap="openPassage"
+    >
+      <text class="item-no">{{item.index + 1}}</text>
+      <view class="item-body">
+        <text class="item-en">{{item.en}}</text>
+        <text class="item-zh">{{item.zh}}</text>
+      </view>
+      <text class="item-kw">{{item.kwCount}} 词</text>
+      <text class="item-arrow">›</text>
+    </view>
+  </view>
+</view>

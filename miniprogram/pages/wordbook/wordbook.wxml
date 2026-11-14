@@ -1,0 +1,74 @@
+<view class="page wordbook" bindtap="onPageTap">
+  <view class="page-head">
+    <text class="eyebrow">Word Book</text>
+    <text class="display">生词本</text>
+    <text class="lede">收集不认识与反复记不住的词 · 共 {{totalWords}} 个生词</text>
+  </view>
+
+  <view class="wb-section-head">
+    <text class="wb-section-title">我的生词本</text>
+    <text class="wb-section-note">共 {{books.length}} 个</text>
+  </view>
+
+  <view class="book-list">
+    <view class="book-swipe" wx:for="{{books}}" wx:key="id">
+      <view
+        wx:if="{{item.id !== fixedBookId}}"
+        class="book-delete"
+        data-id="{{item.id}}"
+        catchtap="onSwipeDelete"
+      ><text>删除</text></view>
+      <view
+        class="book-card"
+        style="transform: translateX({{swipedId === item.id ? '-160rpx' : '0'}});"
+        data-id="{{item.id}}"
+        bindtouchstart="onSwipeStart"
+        bindtouchend="onSwipeEnd"
+      >
+        <view class="book-top">
+          <view class="book-cover">
+            <text class="cover-title">{{item.name}}</text>
+            <text class="cover-sub">Word Book</text>
+          </view>
+          <view class="book-meta">
+            <view class="book-name-row">
+              <text class="book-name">{{item.name}}</text>
+              <text wx:if="{{item.id === defaultWordbookId}}" class="default-badge">默认</text>
+              <text class="edit-btn" data-id="{{item.id}}" catchtap="onEdit">编辑</text>
+            </view>
+            <text class="book-sub">共 {{item.wordIds.length}} 词 · 每日任务 {{item.dailyGoal}} 词</text>
+            <text class="book-tip">{{item.id === defaultWordbookId ? '自动收集与词库加星写入此本' : '独立词表'}}</text>
+          </view>
+        </view>
+        <view class="book-actions">
+          <button class="wb-outline book-btn" data-id="{{item.id}}" bindtap="openList">词表</button>
+          <button class="wb-primary book-btn" data-id="{{item.id}}" bindtap="startStudy">开始学习</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="wb-section-head">
+    <text class="wb-section-title">更多</text>
+  </view>
+  <view class="create-btn" bindtap="openCreate">＋ 新建生词本</view>
+</view>
+
+<view wx:if="{{dialog}}" class="wb-mask" bindtap="closeDialog">
+  <view class="wb-dialog" catchtap="noop">
+    <text class="wb-dialog-title">{{dialogMode === 'create' ? '新建生词本' : '编辑生词本'}}</text>
+    <input
+      class="wb-input"
+      value="{{draftName}}"
+      placeholder="输入生词本名称"
+      maxlength="40"
+      bindinput="onNameInput"
+    />
+    <view class="wb-dialog-actions">
+      <button class="btn-ghost" bindtap="closeDialog">取消</button>
+      <button class="wb-primary" bindtap="confirmDialog">确定</button>
+    </view>
+    <view wx:if="{{dialogMode === 'edit' && !isDefaultBook}}" class="wb-set-default" bindtap="confirmSetDefault">设为默认生词本</view>
+    <view wx:if="{{dialogMode === 'edit' && !isFixedBook}}" class="wb-danger" bindtap="confirmDelete">删除该生词本</view>
+  </view>
+</view>

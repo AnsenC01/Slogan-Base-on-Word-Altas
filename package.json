@@ -1,0 +1,26 @@
+{
+  "name": "shici-wordiary",
+  "version": "1.1.0",
+  "private": true,
+  "description": "拾词Wordiary 微信小程序版 MVP",
+  "scripts": {
+    "build:vocab": "node scripts/build-vocab.mjs",
+    "build:passages": "node scripts/build-passages.mjs",
+    "e2e": "node scripts/e2e-verify.mjs",
+    "upload:media": "cloudbase hosting deploy ../word-atlas/public/atlas atlas -e slogan-d2g7bvmyw4f8d901e",
+    "gen:tab-icons": "python3 scripts/gen-tab-icons.py",
+    "gen:wordbook-icon": "node scripts/gen-wordbook-icon.mjs",
+    "gen:passage-icon": "node scripts/gen-passage-icon.mjs",
+    "selfcheck:lookup": "node scripts/selfcheck-word-lookup.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ts-fsrs": "^5.4.2"
+  },
+  "devDependencies": {
+    "@cloudbase/cli": "^3.9.1",
+    "miniprogram-api-typings": "^5.2.3",
+    "miniprogram-automator": "^0.13.0",
+    "typescript": "~5.9.3"
+  }
+}

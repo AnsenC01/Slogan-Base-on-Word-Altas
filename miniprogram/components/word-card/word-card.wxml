@@ -1,0 +1,110 @@
+<view class="word-card" wx:if="{{word}}">
+  <view class="figure">
+    <image
+      wx:if="{{!imageError}}"
+      class="figure-img"
+      src="{{word.imageUrl}}?r={{retry}}"
+      mode="aspectFill"
+      lazy-load
+      binderror="onImageError"
+    />
+    <view wx:else class="figure-fallback">
+      <image class="figure-placeholder" src="/assets/placeholder.png" mode="aspectFill" />
+      <text class="figure-tip">图片加载失败</text>
+      <button class="retry-btn" size="mini" bindtap="retryImage">重试</button>
+    </view>
+  </view>
+
+  <view class="word-line">
+    <text class="word">{{word.word}}</text>
+    <text class="pos" wx:if="{{word.pos}}">{{word.pos}}</text>
+    <text class="cefr">{{word.cefr}}</text>
+  </view>
+  <view class="phonetic">
+    <text>英 {{word.phoneticUK}}</text>
+    <text class="phonetic-us">美 {{word.phoneticUS}}</text>
+  </view>
+
+  <!-- 释义主体：义项 + 搭配，随「显示释义」显隐；例句紧接在搭配之后。 -->
+  <view wx:if="{{showMeaning}}" class="meaning">
+    <text class="meaning-label">释义</text>
+
+    <!-- 完整义项：逐条展示词性 + 中文 + 英文，不再只取第一条。 -->
+    <block wx:if="{{word.senses.length}}">
+      <view class="sense-list">
+        <view class="sense-item" wx:for="{{word.senses}}" wx:key="en" wx:for-index="senseIndex">
+          <text class="sense-no">{{senseIndex + 1}}</text>
+          <view class="sense-body">
+            <view class="sense-zh">
+              <text wx:if="{{item.pos}}" class="sense-pos">{{item.pos}}</text>
+              <text class="sense-zh-text">{{item.zh}}</text>
+            </view>
+            <view wx:if="{{item.en}}" class="sense-en"><word-text text="{{item.en}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <text class="meaning-cn">{{word.meaningCN}}</text>
+      <view class="meaning-en"><word-text text="{{word.meaningEN}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+    </block>
+
+    <view wx:if="{{word.collocations.length}}" class="meta-block">
+      <text class="meta-title">搭配</text>
+      <view class="chips">
+        <view wx:for="{{word.collocations}}" wx:key="*this" class="chip"><word-text text="{{item}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 例句只展示第一条：位置在搭配之后；英文常驻，中文译文随释义显隐，避免学习页未回忆就看到答案。 -->
+  <block wx:if="{{word.examples.length}}">
+    <block wx:for="{{word.examples}}" wx:key="en" wx:for-index="exIndex">
+      <view wx:if="{{exIndex === 0}}" class="sentence">
+        <text class="sentence-label">例句</text>
+        <view class="sentence-en"><word-text text="{{item.en}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+        <text wx:if="{{showMeaning && item.zh}}" class="sentence-cn">{{item.zh}}</text>
+      </view>
+    </block>
+  </block>
+  <view wx:elif="{{word.example}}" class="sentence">
+    <view class="sentence-en"><word-text text="{{word.example}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+    <text wx:if="{{showMeaning && word.exampleCN}}" class="sentence-cn">{{word.exampleCN}}</text>
+  </view>
+
+  <!-- 其余释义补充：词族 / 同反义词 / 辨析，排在例句之后。 -->
+  <view wx:if="{{showMeaning}}" class="meaning meaning-more">
+    <view wx:if="{{word.wordFamily.length}}" class="meta-block">
+      <text class="meta-title">词族</text>
+      <view class="chips">
+        <view wx:for="{{word.wordFamily}}" wx:key="*this" class="chip"><word-text text="{{item}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+      </view>
+    </view>
+
+    <view wx:if="{{word.synonyms.length}}" class="meta-block">
+      <text class="meta-title">同义词</text>
+      <view class="chips">
+        <view wx:for="{{word.synonyms}}" wx:key="*this" class="chip"><word-text text="{{item}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+      </view>
+    </view>
+
+    <view wx:if="{{word.antonyms.length}}" class="meta-block">
+      <text class="meta-title">反义词</text>
+      <view class="chips">
+        <view wx:for="{{word.antonyms}}" wx:key="*this" class="chip"><word-text text="{{item}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+      </view>
+    </view>
+
+    <view wx:if="{{word.usageTip}}" class="tip">
+      <text class="meta-title">辨析 · 用法提示</text>
+      <view class="tip-text"><word-text text="{{word.usageTip}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+    </view>
+
+    <view wx:if="{{word.note}}" class="tip tip-note">
+      <text class="meta-title">用法注意</text>
+      <view class="tip-text"><word-text text="{{word.note}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+    </view>
+  </view>
+
+  <word-popup wordId="{{popupId}}" activeRaw="{{popupRaw}}" bind:close="onPopupClose" bind:wordbookchange="onWordbookChange" />
+</view>

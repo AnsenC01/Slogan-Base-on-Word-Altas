@@ -1,0 +1,77 @@
+<view class="page study" wx:if="{{!empty && !finished && !loading}}">
+  <view class="study-head">
+    <text class="eyebrow">Learning</text>
+    <text class="counter">{{index + 1}} / {{total}}</text>
+  </view>
+  <view class="bar">
+    <view class="bar-fill" style="width: {{(index / total) * 100}}%"></view>
+  </view>
+
+  <view class="card-wrap">
+    <word-card word="{{current}}" showMeaning="{{showMeaning}}" />
+    <!-- 词卡左右隐形点击热区：不显示任何视觉元素；右=认识、左=不认识，与下方评分按钮等价 -->
+    <view class="tap-zone tap-zone-left" data-rating="unknown" bindtap="onZoneRate"></view>
+    <view class="tap-zone tap-zone-right" data-rating="known" bindtap="onZoneRate"></view>
+
+    <!-- 仅第一次使用时出现：左右两个透明虚线框标出热区位置与含义，点任意处关闭；热区本体仍不可见 -->
+    <view wx:if="{{showTapHint}}" class="tap-guide" catchtap="dismissTapHint">
+      <view class="tap-guide-side tap-guide-left" data-rating="unknown" catchtap="onGuideRate">
+        <text class="tap-guide-word">不</text>
+        <text class="tap-guide-word">认</text>
+        <text class="tap-guide-word">识</text>
+      </view>
+      <view class="tap-guide-side tap-guide-right" data-rating="known" catchtap="onGuideRate">
+        <text class="tap-guide-word">认</text>
+        <text class="tap-guide-word">识</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="audio-group">
+    <audio-button class="audio-segment" grouped="{{true}}" label="英音" url="{{current.audioUK}}" />
+    <view class="audio-divider"></view>
+    <audio-button class="audio-segment" grouped="{{true}}" label="美音" url="{{current.audioUS}}" />
+    <view class="audio-divider"></view>
+    <audio-button class="audio-segment" grouped="{{true}}" label="例句" url="{{current.audioExample}}" />
+  </view>
+
+  <view class="rate-area">
+    <!-- 已评分时「隐藏释义」与「下一个」并排；未评分时该行只有翻卡按钮，下方仍是三档自评。 -->
+    <view class="action-row">
+      <button class="btn-ghost action-btn" bindtap="toggleMeaning">{{showMeaning ? '隐藏释义' : '显示释义'}}</button>
+      <button wx:if="{{rated}}" class="btn-primary action-btn" bindtap="goNext">下一个</button>
+    </view>
+    <view class="rate-row" wx:if="{{!rated}}">
+      <button class="rate-btn" data-rating="unknown" bindtap="onRate">不认识</button>
+      <button class="rate-btn" data-rating="unsure" bindtap="onRate">模糊</button>
+      <button class="rate-btn is-known" data-rating="known" bindtap="onRate">认识</button>
+    </view>
+    <text class="hint">先在心里回忆，再看释义自评</text>
+  </view>
+</view>
+
+<view class="page finish" wx:if="{{finished}}">
+  <text class="eyebrow">Round Complete</text>
+  <text class="display">本轮学习完成</text>
+  <text class="lede">共 {{total}} 个词。接下来用四种题型做一次主动回忆。</text>
+  <view class="finish-actions">
+    <button class="btn-primary" bindtap="goPractice">进入本轮小测</button>
+    <button wx:if="{{!wordbookId}}" class="btn-ghost" bindtap="startDailyQuiz">今日单词小测</button>
+    <button class="btn-ghost" bindtap="backHome">{{wordbookId ? '返回生词列表' : '返回首页'}}</button>
+  </view>
+</view>
+
+<view class="page" wx:if="{{loading}}">
+  <view class="empty">
+    <text class="display">正在加载词库…</text>
+    <text class="lede">首次加载需下载词条数据，请稍候。</text>
+  </view>
+</view>
+
+<view class="page" wx:if="{{empty}}">
+  <view class="empty">
+    <text class="display">今天没有待学新词</text>
+    <text class="lede">去词库看看，或明天再来。</text>
+  </view>
+  <button class="btn-ghost" bindtap="backHome">{{wordbookId ? '返回生词列表' : '返回首页'}}</button>
+</view>

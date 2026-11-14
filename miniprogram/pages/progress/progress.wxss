@@ -1,0 +1,110 @@
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.summary-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.summary-main {
+  display: flex;
+  align-items: baseline;
+  gap: 10rpx;
+}
+
+.big-number {
+  font-size: 72rpx;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.big-total {
+  font-size: 26rpx;
+  color: #8d8377;
+}
+
+.summary-percent {
+  font-size: 30rpx;
+  color: #ad5038;
+}
+
+.summary-stats {
+  display: flex;
+  border-top: 1rpx solid #efe5d5;
+  padding-top: 20rpx;
+}
+
+.mini-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  align-items: center;
+}
+
+.mini-number {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.mini-label {
+  font-size: 20rpx;
+  color: #8d8377;
+}
+
+.section-head {
+  margin: 40rpx 0 20rpx;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.section-note {
+  font-size: 22rpx;
+  color: #8d8377;
+}
+
+.topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.topic-item {
+  background: #fffcf6;
+  border: 1rpx solid #e7ddcd;
+  border-radius: 18rpx;
+  padding: 22rpx 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.topic-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topic-name {
+  font-size: 28rpx;
+}
+
+.topic-percent {
+  font-size: 24rpx;
+  color: #ad5038;
+}
+
+.topic-counts {
+  font-size: 20rpx;
+  color: #8d8377;
+}

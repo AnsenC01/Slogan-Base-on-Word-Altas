@@ -1,0 +1,113 @@
+/* 宿主节点参与页面 flex 布局：等分一行，并让内部按钮撑满宿主 */
+:host {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.audio-btn {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  background: #f4ece0;
+  border: 1rpx solid #ded1bd;
+  border-radius: 999rpx;
+  padding: 12rpx 16rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #17283b;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.audio-btn::after {
+  border: none;
+}
+
+/* 按下/播放态的高亮层：独立小腰形，不会被分段边界裁成矩形 */
+.audio-highlight {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  bottom: 8rpx;
+  left: 8rpx;
+  border-radius: 999rpx;
+  background: transparent;
+}
+
+.audio-label {
+  position: relative;
+  z-index: 1;
+}
+
+.audio-btn.dark {
+  background: #17283b;
+  border-color: #17283b;
+  color: #fdf9f1;
+}
+
+.audio-btn.status-loading {
+  opacity: 0.55;
+}
+
+.audio-btn.status-playing {
+  background: #ad5038;
+  border-color: #ad5038;
+  color: #fdf9f1;
+}
+
+.audio-btn.status-error {
+  border-color: #ad5038;
+  color: #ad5038;
+}
+
+.audio-btn.status-error.dark {
+  color: #f2b7a3;
+}
+
+/* 分组态：按钮本身仍是无边框的等分分段，反馈由内层腰形高亮呈现 */
+.audio-btn.is-grouped {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #17283b;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.audio-btn.is-grouped.status-loading {
+  opacity: 0.8;
+}
+
+.audio-btn.is-grouped.status-loading .audio-highlight {
+  background: rgba(23, 40, 59, 0.06);
+}
+
+.audio-btn.is-grouped.status-playing,
+.audio-btn.is-grouped.audio-pressed {
+  background: transparent;
+  color: #17283b;
+}
+
+/* 按下瞬间（hover-class）与播放中：同一枚完整腰形高亮 */
+.audio-btn.is-grouped.status-playing .audio-highlight,
+.audio-btn.is-grouped.audio-pressed .audio-highlight {
+  background: rgba(23, 40, 59, 0.12);
+}
+
+.audio-btn.is-grouped.status-error {
+  color: #ad5038;
+}

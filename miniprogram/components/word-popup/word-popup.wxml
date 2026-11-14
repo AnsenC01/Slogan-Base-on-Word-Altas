@@ -1,0 +1,38 @@
+<root-portal>
+  <view wx:if="{{entry}}" class="wp-mask" bindtap="onClose" catchtouchmove="onNoop">
+    <view class="wp-card" catchtap="onNoop">
+      <view class="wp-head">
+        <view class="wp-title">
+          <text class="wp-word">{{entry.word}}</text>
+          <text class="wp-star {{starred ? 'is-on' : ''}}" catchtap="onToggleWordbook">{{starred ? '★' : '☆'}}</text>
+        </view>
+        <text class="wp-detail-btn {{expanded ? 'is-on' : ''}}" catchtap="onToggleDetail">{{loadingDetail ? '加载中…' : (expanded ? '收起释义' : '详细释义')}}</text>
+      </view>
+      <text wx:if="{{fromRaw}}" class="wp-from">例句中为 {{fromRaw}}</text>
+
+      <view class="wp-phonetics">
+        <view class="wp-ph" catchtap="onPlayUK"><text class="wp-play">▶</text><text class="wp-ph-label">英</text><text class="wp-ipa">{{entry.phoneticUK}}</text></view>
+        <view class="wp-ph" catchtap="onPlayUS"><text class="wp-play">▶</text><text class="wp-ph-label">美</text><text class="wp-ipa">{{entry.phoneticUS}}</text></view>
+      </view>
+
+      <view class="wp-meaning">
+        <text wx:if="{{entry.pos}}" class="wp-pos">{{entry.pos}}</text>
+        <text class="wp-zh">{{entry.meaningCN}}</text>
+      </view>
+
+      <view wx:if="{{expanded}}" class="wp-expanded">
+        <view wx:for="{{senses}}" wx:key="en" wx:for-item="sense" class="wp-sense">
+          <text class="wp-sense-pos">{{sense.pos}}</text>
+          <text class="wp-sense-zh">{{sense.zh}}</text>
+          <text wx:if="{{sense.en}}" class="wp-sense-en">{{sense.en}}</text>
+        </view>
+        <view wx:if="{{example}}" class="wp-example">
+          <text class="wp-example-en">{{example.en}}</text>
+          <text wx:if="{{example.zh}}" class="wp-example-cn">{{example.zh}}</text>
+        </view>
+      </view>
+
+      <view class="wp-add {{starred ? 'is-on' : ''}}" catchtap="onToggleWordbook">{{starred ? '移出生词本' : '加入生词本'}}</view>
+    </view>
+  </view>
+</root-portal>

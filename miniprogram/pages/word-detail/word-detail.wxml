@@ -1,0 +1,58 @@
+<view class="page detail" wx:if="{{word}}">
+  <view class="detail-head">
+    <view class="detail-head-top">
+      <text class="eyebrow">Word Detail</text>
+      <text class="star {{starred ? 'is-on' : ''}}" catchtap="onStarTap">{{starred ? '★' : '☆'}}</text>
+    </view>
+    <view class="detail-tags">
+      <text class="tag" wx:if="{{word.pos}}">{{word.pos}}</text>
+      <text class="tag">{{word.cefr}}</text>
+      <text class="tag">{{topicName}}</text>
+      <text class="tag is-on">{{statusLabel}}</text>
+    </view>
+  </view>
+
+  <view class="detail-card">
+    <word-card word="{{word}}" showMeaning="{{true}}" bind:wordbookchange="onWordbookChange" />
+    <!-- 词卡左右隐形热区：右侧＝下一个单词、左侧＝标记已学；常态完全不可见 -->
+    <view class="tap-zone tap-zone-left" data-side="left" bindtap="onZoneRate"></view>
+    <view class="tap-zone tap-zone-right" data-side="right" bindtap="onZoneRate"></view>
+
+    <!-- 仅第一次进入词条详情时提示：左右透明虚线框，点任意处关闭 -->
+    <view wx:if="{{showDetailHint}}" class="tap-guide" catchtap="dismissDetailHint">
+      <view class="tap-guide-side tap-guide-left" data-side="left" catchtap="onGuideRate">
+        <text class="tap-guide-word">标</text>
+        <text class="tap-guide-word">记</text>
+        <text class="tap-guide-word">已</text>
+        <text class="tap-guide-word">学</text>
+      </view>
+      <view class="tap-guide-side tap-guide-right" data-side="right" catchtap="onGuideRate">
+        <text class="tap-guide-word">下</text>
+        <text class="tap-guide-word">一</text>
+        <text class="tap-guide-word">个</text>
+        <text class="tap-guide-word">单</text>
+        <text class="tap-guide-word">词</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="audio-group">
+    <audio-button class="audio-segment" grouped="{{true}}" label="英音" url="{{word.audioUK}}" />
+    <view class="audio-divider"></view>
+    <audio-button class="audio-segment" grouped="{{true}}" label="美音" url="{{word.audioUS}}" />
+    <view class="audio-divider"></view>
+    <audio-button class="audio-segment" grouped="{{true}}" label="例句" url="{{word.audioExample}}" />
+  </view>
+
+  <!-- 单手拇指易够到右侧：加入今日学习（左）→ 标记已学（中）→ 下一个单词（右，主操作） -->
+  <view class="detail-actions">
+    <button class="btn-ghost" bindtap="addToStudy">加入今日学习</button>
+    <button class="btn-ghost" bindtap="markLearned">标记已学</button>
+    <button class="btn-primary" bindtap="nextWord">下一个单词</button>
+  </view>
+</view>
+
+<view class="page" wx:if="{{notFound}}">
+  <view class="empty">未找到该词条</view>
+  <button class="btn-ghost" bindtap="back">返回</button>
+</view>

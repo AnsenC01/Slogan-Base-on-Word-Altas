@@ -1,0 +1,74 @@
+<view class="page library">
+  <view class="page-head">
+    <text class="eyebrow">Library</text>
+    <text class="display">词库</text>
+    <text class="lede">共 {{total}} 个词，按 CEFR 与话题筛选。</text>
+  </view>
+
+  <view class="search-wrap">
+    <input
+      class="search-input"
+      value="{{keyword}}"
+      placeholder="搜索单词或中文释义"
+      confirm-type="search"
+      bindinput="onSearchInput"
+    />
+    <text wx:if="{{keyword}}" class="search-clear" bindtap="clearSearch">清除</text>
+  </view>
+
+  <view class="filter-group">
+    <text class="filter-title">CEFR</text>
+    <view class="chips">
+      <text
+        wx:for="{{cefrLevels}}"
+        wx:key="*this"
+        class="tag {{selectedCefr === item ? 'is-on' : ''}}"
+        data-cefr="{{item}}"
+        bindtap="onCefrTap"
+      >{{item === 'ALL' ? '全部' : item}}</text>
+    </view>
+  </view>
+
+  <view class="filter-group">
+    <text class="filter-title">话题</text>
+    <view class="chips">
+      <text
+        wx:for="{{topics}}"
+        wx:key="id"
+        class="tag {{selectedTopic === item.id ? 'is-on' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onTopicTap"
+      >{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="word-list">
+    <view
+      class="word-item"
+      wx:for="{{list}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onWordTap"
+    >
+      <image class="thumb" src="{{item.thumbUrl}}" mode="aspectFill" lazy-load />
+      <view class="word-info">
+        <view class="word-top">
+          <text class="word-text">{{item.word}}</text>
+          <text class="phonetic">{{item.phoneticUK}}</text>
+          <text wx:if="{{item.pos}}" class="pos">{{item.pos}}</text>
+        </view>
+        <text class="meaning">{{item.meaningCN}}</text>
+        <view class="word-tags">
+          <text class="tag">{{item.cefr}}</text>
+          <text class="tag">{{item.topicName}}</text>
+        </view>
+      </view>
+      <view class="item-side">
+        <text class="star {{item.starred ? 'is-on' : ''}}" data-id="{{item.id}}" catchtap="onStarTap">{{item.starred ? '★' : '☆'}}</text>
+        <text class="status status-{{item.status}}">{{item.statusLabel}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!list.length}}" class="empty">没有符合条件的词条</view>
+</view>

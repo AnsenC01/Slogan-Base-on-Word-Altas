@@ -1,0 +1,106 @@
+/* 为悬浮自定义 tabBar 留出底部空间，避免遮挡页面末尾内容 */
+.page { padding-bottom: 180rpx; }
+
+/* 全局 .page-head 内 text 是行内元素，标题会挤成一行，这里局部块级化。 */
+.page-head .eyebrow,
+.page-head .display,
+.page-head .lede {
+  display: block;
+}
+.page-head .display {
+  margin: 12rpx 0 8rpx;
+}
+
+.segment {
+  display: flex;
+  background: #efe7da;
+  border-radius: 20rpx;
+  padding: 8rpx;
+  margin-bottom: 24rpx;
+}
+.seg {
+  flex: 1;
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 26rpx;
+  color: #6f665c;
+  border: 1rpx solid transparent;
+  border-radius: 14rpx;
+  box-sizing: border-box;
+}
+.seg.is-on {
+  background: #fffcf6;
+  border-color: #e7ddcd;
+  color: #17283b;
+  font-weight: 600;
+}
+
+.list-tip {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 22rpx;
+  color: #8d8377;
+  margin: 0 4rpx 20rpx;
+}
+.kw-swatch {
+  display: inline-block;
+  width: 28rpx;
+  height: 18rpx;
+  background: #dcebf2;
+  border-bottom: 3rpx solid #7fa9be;
+  border-radius: 4rpx;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  background: #fffcf6;
+  border: 1rpx solid #e7ddcd;
+  border-radius: 24rpx;
+  padding: 26rpx 24rpx;
+}
+.item-no {
+  flex: none;
+  width: 52rpx;
+  font-size: 24rpx;
+  color: #ad5038;
+}
+.item-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.item-en {
+  font-size: 28rpx;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.item-zh {
+  font-size: 24rpx;
+  color: #8d8377;
+  margin-top: 6rpx;
+}
+.item-kw {
+  flex: none;
+  font-size: 22rpx;
+  color: #5a8699;
+  background: #eaf3f8;
+  border-radius: 999rpx;
+  padding: 6rpx 16rpx;
+}
+.item-arrow {
+  flex: none;
+  color: #c9c2b7;
+  font-size: 36rpx;
+}

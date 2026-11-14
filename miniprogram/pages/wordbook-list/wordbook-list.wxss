@@ -1,0 +1,197 @@
+.wordbook-list {
+  padding-bottom: 180rpx;
+}
+
+.wb-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  border-bottom: 1rpx solid #e7ddcd;
+}
+
+.wb-tabs {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 8rpx;
+}
+
+.wb-tab {
+  font-size: 25rpx;
+  color: #8d8377;
+  padding: 12rpx 4rpx 20rpx;
+  white-space: nowrap;
+}
+
+.wb-tab.is-on {
+  color: #2f8f6b;
+  font-weight: 600;
+  border-bottom: 4rpx solid #2f8f6b;
+}
+
+.wb-more {
+  flex: none;
+  /* 下移与「今日任务 / 在学单词」等分类标签的文字中心对齐 */
+  margin-top: 14rpx;
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
+  color: #17283b;
+  padding: 0 8rpx 16rpx;
+  line-height: 1;
+}
+
+.wb-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #efe9df;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  margin-top: 20rpx;
+}
+
+.wb-count {
+  font-size: 24rpx;
+  color: #6f665c;
+}
+
+.wb-filter {
+  font-size: 24rpx;
+  color: #2f8f6b;
+}
+
+.wb-chips {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin: 16rpx 0 8rpx;
+}
+
+.review-chip {
+  font-size: 22rpx;
+  color: #ad5038;
+  border: 1rpx solid #e0b79f;
+  background: #fff8ef;
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+}
+
+.review-chip.is-on {
+  background: #ad5038;
+  color: #fffdf9;
+}
+
+.remove-tip {
+  font-size: 22rpx;
+  color: #8d8377;
+}
+
+.wb-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.wb-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  padding: 24rpx 0 20rpx;
+  border-bottom: 1rpx dashed #ded1bd;
+}
+
+.wb-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.wb-word-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.wb-word {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #17283b;
+  overflow-wrap: break-word;
+}
+
+.wb-pos {
+  font-size: 22rpx;
+  color: #6f665c;
+  background: #efe5d5;
+  border-radius: 8rpx;
+  padding: 2rpx 10rpx;
+}
+
+.wb-phonetic {
+  font-size: 24rpx;
+  color: #8d8377;
+  overflow-wrap: break-word;
+}
+
+.wb-meaning {
+  font-size: 26rpx;
+  color: #4c463f;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.mask-bar {
+  height: 24rpx;
+  border-radius: 999rpx;
+  background: #e6e2dc;
+}
+
+.mask-word {
+  width: 200rpx;
+  height: 34rpx;
+}
+
+.mask-meaning {
+  width: 100%;
+}
+
+.row-review-tag {
+  align-self: flex-start;
+  font-size: 20rpx;
+  color: #ad5038;
+}
+
+.wb-row-side {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  padding-top: 6rpx;
+}
+
+.remove-btn {
+  font-size: 20rpx;
+  color: #ad5038;
+  border: 1rpx solid #e0b79f;
+  border-radius: 8rpx;
+  padding: 2rpx 10rpx;
+}
+
+.list-tail {
+  text-align: center;
+  font-size: 22rpx;
+  color: #a89e91;
+  padding: 28rpx 0;
+}
+
+.wb-empty {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #8d8377;
+  padding: 28rpx 0;
+}

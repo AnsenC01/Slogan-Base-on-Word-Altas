@@ -1,0 +1,51 @@
+/* 词卡作为左右隐形热区 / 首次引导层的定位参照。
+   详情页没有学习页 card-wrap 的 28rpx 内边距，插画下沿是 440rpx 而非 468rpx，
+   因此这里覆盖全局热区与引导框的 top。 */
+.detail-card {
+  position: relative;
+}
+.detail-card .tap-zone,
+.detail-card .tap-guide-side {
+  top: 440rpx;
+}
+/* 详情页释义常驻展开、词卡很长：引导框若铺满整卡，提示词会落到首屏之外并与正文叠在一起。
+   固定一个较矮的虚线框让提示词首屏居中完整可见；下方整片左右区域仍是可点击热区。 */
+.detail-card .tap-guide-side {
+  bottom: auto;
+  height: 420rpx;
+}
+
+.detail-head {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  margin-bottom: 24rpx;
+}
+
+.detail-head-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-tags {
+  display: flex;
+  gap: 10rpx;
+}
+
+/* 三音频按钮组样式统一在 app.wxss 的 .audio-group */
+
+.detail-actions {
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  gap: 12rpx;
+}
+
+.detail-actions button {
+  flex: 1;
+  min-width: 0;
+  font-size: 24rpx;
+  padding: 22rpx 0;
+  white-space: nowrap;
+}

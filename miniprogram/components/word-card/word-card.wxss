@@ -1,0 +1,259 @@
+.word-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.figure {
+  width: 100%;
+  height: 440rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  background: #efe5d5;
+  position: relative;
+}
+
+.figure-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.figure-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+}
+
+.figure-placeholder {
+  width: 200rpx;
+  height: 140rpx;
+  border-radius: 12rpx;
+}
+
+.figure-tip {
+  font-size: 24rpx;
+  color: #8d8377;
+}
+
+.retry-btn {
+  background: #17283b;
+  color: #fdf9f1;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  padding: 0 24rpx;
+}
+
+.word-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 32rpx;
+}
+
+.pos {
+  font-size: 26rpx;
+  color: #6f665c;
+  background: #efe5d5;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+  white-space: nowrap;
+}
+
+.word {
+  font-size: 64rpx;
+  font-weight: 600;
+  letter-spacing: -1rpx;
+  max-width: 100%;
+  /* 超长单词换行，避免撑破词卡导致页面横向滚动 */
+  overflow-wrap: break-word;
+}
+
+.cefr {
+  font-size: 22rpx;
+  color: #ad5038;
+  border: 1rpx solid #d8b8a8;
+  border-radius: 999rpx;
+  padding: 2rpx 14rpx;
+}
+
+.phonetic {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #6f665c;
+  display: flex;
+  gap: 24rpx;
+}
+
+.meaning {
+  margin-top: 28rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.meaning-cn {
+  font-size: 34rpx;
+  font-weight: 500;
+}
+
+.meaning-en {
+  font-size: 26rpx;
+  color: #6f665c;
+}
+
+.sentence {
+  margin-top: 20rpx;
+  padding: 24rpx;
+  background: #f4ece0;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.sentence-en {
+  font-size: 28rpx;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+.sentence-cn {
+  font-size: 24rpx;
+  color: #7a7168;
+}
+
+.meta-block {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.meta-title {
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+  color: #ad5038;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.chip {
+  font-size: 24rpx;
+  color: #4c463f;
+  background: #efe5d5;
+  border-radius: 12rpx;
+  padding: 8rpx 16rpx;
+}
+
+.tip {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  border-left: 4rpx solid #ad5038;
+  background: #fbf6ee;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: #6f665c;
+}
+
+/* 多条例句 / 完整义项 / 同反义词 —— 沿用暖米主题，长文本统一防溢出 */
+.sentence-label {
+  display: block;
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+  color: #ad5038;
+  margin-bottom: 8rpx;
+}
+
+.meaning-label {
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+  color: #ad5038;
+}
+
+.sense-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.sense-item {
+  display: flex;
+  gap: 16rpx;
+  padding: 18rpx;
+  background: #f4ece0;
+  border-radius: 16rpx;
+}
+
+.sense-no {
+  flex: none;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: #17283b;
+  color: #fdf9f1;
+  font-size: 22rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+
+.sense-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.sense-zh {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10rpx;
+  font-size: 30rpx;
+  overflow-wrap: break-word;
+}
+
+.sense-zh-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.sense-pos {
+  font-size: 22rpx;
+  color: #6f665c;
+  background: #efe5d5;
+  border-radius: 8rpx;
+  padding: 2rpx 10rpx;
+  white-space: nowrap;
+}
+
+.sense-en {
+  font-size: 24rpx;
+  color: #6f665c;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.tip-note {
+  border-left-color: #17283b;
+}
+
+/* 例句之后的释义补充区，缩小与前一块的间距 */
+.meaning-more {
+  margin-top: 20rpx;
+}

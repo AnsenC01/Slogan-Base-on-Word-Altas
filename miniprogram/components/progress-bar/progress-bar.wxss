@@ -1,0 +1,17 @@
+.pb {
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: #efe5d5;
+  overflow: hidden;
+}
+
+.pb-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: #ad5038;
+  transition: width 0.3s ease;
+}
+
+.pb-fill.ink {
+  background: #17283b;
+}

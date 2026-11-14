@@ -1,0 +1,125 @@
+<view class="page rush" wx:if="{{!finished && !empty && current && !loading}}">
+  <view class="rush-head">
+    <text class="eyebrow">{{source === 'today' ? 'Today Quiz' : 'Speed Review'}}{{isUnknownRound ? ' · 专攻生词' : ''}} · {{bookName}}</text>
+    <text class="counter">{{index + 1}} / {{total}}</text>
+  </view>
+  <view class="bar">
+    <view class="bar-fill" style="width: {{(index / total) * 100}}%"></view>
+  </view>
+
+  <view class="rush-card">
+    <text class="rush-word">{{current.word}}</text>
+    <text class="rush-phonetic">英 {{current.phoneticUK}} · 美 {{current.phoneticUS}}</text>
+    <view class="rush-tags">
+      <text wx:if="{{current.pos}}" class="tag">{{current.pos}}</text>
+      <text class="tag">{{current.cefr}}</text>
+    </view>
+
+    <view wx:if="{{!showMeaning}}" class="rush-mask" bindtap="toggleMeaning">点一下显示全部释义</view>
+
+    <block wx:else>
+      <view class="r-detail-head">
+        <text class="r-detail-title">全部释义</text>
+        <text class="r-collapse" catchtap="toggleMeaning">收起</text>
+      </view>
+
+      <!-- 全部义项：词性 + 中文 + 英文 -->
+      <view class="r-sense-list">
+        <view class="r-sense" wx:for="{{current.senses}}" wx:key="en" wx:for-item="sense" wx:for-index="senseIndex">
+          <text class="r-sense-no">{{senseIndex + 1}}</text>
+          <view class="r-sense-body">
+            <view class="r-sense-zh">
+              <text wx:if="{{sense.pos}}" class="r-sense-pos">{{sense.pos}}</text>
+              <text>{{sense.zh}}</text>
+            </view>
+            <view wx:if="{{sense.en}}" class="r-sense-en"><word-text text="{{sense.en}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+          </view>
+        </view>
+        <text wx:if="{{!current.senses.length}}" class="r-fallback">{{current.meaningCN}}</text>
+      </view>
+
+      <!-- 搭配 -->
+      <view wx:if="{{current.collocations.length}}" class="r-meta">
+        <text class="r-meta-title">搭配</text>
+        <view class="r-chips">
+          <view class="r-chip" wx:for="{{current.collocations}}" wx:key="*this" wx:for-item="col"><word-text text="{{col}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+        </view>
+      </view>
+
+      <!-- 例句只展示第一条 -->
+      <block wx:if="{{current.examples.length}}">
+        <block wx:for="{{current.examples}}" wx:key="en" wx:for-item="ex" wx:for-index="exIndex">
+          <view wx:if="{{exIndex === 0}}" class="r-sentence">
+            <text class="r-sentence-label">例句</text>
+            <view class="r-sentence-en"><word-text text="{{ex.en}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+            <text wx:if="{{ex.zh}}" class="r-sentence-cn">{{ex.zh}}</text>
+          </view>
+        </block>
+      </block>
+      <view wx:elif="{{current.example}}" class="r-sentence">
+        <view class="r-sentence-en"><word-text text="{{current.example}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+        <text wx:if="{{current.exampleCN}}" class="r-sentence-cn">{{current.exampleCN}}</text>
+      </view>
+
+      <!-- 词族 / 同义词 / 反义词 -->
+      <view wx:if="{{current.wordFamily.length}}" class="r-meta">
+        <text class="r-meta-title">词族</text>
+        <view class="r-chips">
+          <view class="r-chip" wx:for="{{current.wordFamily}}" wx:key="*this" wx:for-item="fam"><word-text text="{{fam}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+        </view>
+      </view>
+      <view wx:if="{{current.synonyms.length}}" class="r-meta">
+        <text class="r-meta-title">同义词</text>
+        <view class="r-chips">
+          <view class="r-chip" wx:for="{{current.synonyms}}" wx:key="*this" wx:for-item="syn"><word-text text="{{syn}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+        </view>
+      </view>
+      <view wx:if="{{current.antonyms.length}}" class="r-meta">
+        <text class="r-meta-title">反义词</text>
+        <view class="r-chips">
+          <view class="r-chip" wx:for="{{current.antonyms}}" wx:key="*this" wx:for-item="ant"><word-text text="{{ant}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+        </view>
+      </view>
+
+      <!-- 辨析与用法注意 -->
+      <view wx:if="{{current.usageTip}}" class="r-tip">
+        <text class="r-tip-title">辨析 · 用法提示</text>
+        <view class="r-tip-text"><word-text text="{{current.usageTip}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+      </view>
+      <view wx:if="{{current.note}}" class="r-tip r-tip-note">
+        <text class="r-tip-title">用法注意</text>
+        <view class="r-tip-text"><word-text text="{{current.note}}" activeId="{{popupId}}" bind:wordtap="onWordTap" /></view>
+      </view>
+    </block>
+  </view>
+
+  <view class="rush-audio {{audioStatus === 'playing' ? 'is-playing' : ''}}" bindtap="playWordAudio">{{audioStatus === 'playing' ? '播放中…' : '播放发音'}}</view>
+
+  <view class="rush-actions">
+    <button class="btn-ghost" data-known="0" bindtap="rate">不认识</button>
+    <button class="wb-primary" data-known="1" bindtap="rate">认识</button>
+  </view>
+  <text class="hint">{{source === 'today' ? '小测不写入学习记录，可放心自测' : '极速刷词不写入学习记录，可放心快速过词'}}</text>
+</view>
+
+<view class="page result" wx:if="{{finished}}">
+  <text class="eyebrow">Round Complete</text>
+  <text class="display">{{source === 'today' ? '本轮小测完成' : '本轮刷词完成'}}</text>
+  <text class="lede">{{isUnknownRound ? '专攻生词轮 · ' : ''}}共 {{total}} 词 · 认识 {{known}} · 不认识 {{unknown}}</text>
+  <view class="result-actions">
+    <button class="wb-primary" bindtap="restart">再刷一轮</button>
+    <button class="wb-outline {{unknownWords.length ? '' : 'is-off'}}" bindtap="restartUnknown">本轮生词（{{unknownWords.length}}）</button>
+    <button class="btn-ghost" bindtap="back">{{backLabel}}</button>
+  </view>
+</view>
+
+<view class="page" wx:if="{{loading}}">
+  <view class="empty">正在加载词库…</view>
+</view>
+
+<view class="page" wx:if="{{empty}}">
+  <view class="empty">{{source === 'today' ? '今天还没有学过的单词，先去学几个吧' : '这个生词本还没有可刷的词'}}</view>
+  <button class="btn-ghost" bindtap="back">{{backLabel}}</button>
+</view>
+
+<word-popup wordId="{{popupId}}" activeRaw="{{popupRaw}}" bind:close="onPopupClose" />

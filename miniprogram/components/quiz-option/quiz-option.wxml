@@ -1,0 +1,3 @@
+<button class="quiz-option {{state}}" bindtap="onTap" disabled="{{disabled}}" hover-class="none">
+  <text class="option-label">{{label}}</text>
+</button>

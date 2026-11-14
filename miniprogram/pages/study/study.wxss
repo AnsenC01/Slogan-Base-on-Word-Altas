@@ -1,0 +1,96 @@
+.study-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter {
+  font-size: 24rpx;
+  color: #8d8377;
+}
+
+.bar {
+  height: 8rpx;
+  border-radius: 999rpx;
+  background: #efe5d5;
+  overflow: hidden;
+  margin: 16rpx 0 28rpx;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #ad5038;
+}
+
+.card-wrap {
+  /* 作为左右隐形点击热区的定位参照 */
+  position: relative;
+  background: #fffcf6;
+  border: 1rpx solid #e7ddcd;
+  border-radius: 24rpx;
+  padding: 28rpx;
+}
+
+/* 三音频按钮组样式统一在 app.wxss 的 .audio-group */
+
+.action-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.action-btn {
+  flex: 1;
+  min-width: 0;
+  font-size: 28rpx;
+}
+
+.rate-area {
+  margin-top: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.hint {
+  font-size: 24rpx;
+  color: #8d8377;
+  text-align: center;
+}
+
+.rate-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.rate-btn {
+  flex: 1;
+  background: #efe5d5;
+  color: #17283b;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  padding: 24rpx 0;
+  border: none;
+}
+
+.rate-btn::after {
+  border: none;
+}
+
+.rate-btn.is-known {
+  background: #17283b;
+  color: #fdf9f1;
+}
+
+.finish {
+  padding-top: 120rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.finish-actions {
+  margin-top: 48rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}

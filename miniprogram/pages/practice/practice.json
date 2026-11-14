@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "练习",
+  "usingComponents": {
+    "quiz-option": "/components/quiz-option/quiz-option",
+    "audio-button": "/components/audio-button/audio-button"
+  }
+}

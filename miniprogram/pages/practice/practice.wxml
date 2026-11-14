@@ -1,0 +1,80 @@
+<view class="page practice" wx:if="{{!finished && !empty && current && !loading}}">
+  <view class="practice-head">
+    <view>
+      <text class="eyebrow">Practice</text>
+      <text class="display">主动回忆</text>
+    </view>
+    <text class="counter">{{answered}} / {{total}}</text>
+  </view>
+  <view class="bar">
+    <view class="bar-fill" style="width: {{(answered / total) * 100}}%"></view>
+  </view>
+
+  <view class="question panel">
+    <text class="quiz-type">{{current.quizLabel}}</text>
+
+    <image wx:if="{{current.imageUrl}}" class="question-img" src="{{current.imageUrl}}" mode="aspectFill" lazy-load />
+    <text class="prompt">{{current.prompt}}</text>
+    <text wx:if="{{current.hint}}" class="hint">{{current.hint}}</text>
+
+    <view wx:if="{{current.audioUrl}}" class="audio-row">
+      <audio-button label="播放发音" url="{{current.audioUrl}}" tone="dark" />
+    </view>
+
+    <view wx:if="{{current.quizType !== 'spelling'}}" class="options">
+      <quiz-option
+        wx:for="{{current.options}}"
+        wx:key="*this"
+        label="{{item}}"
+        disabled="{{feedback !== ''}}"
+        state="{{feedback !== '' ? (item === current.answer ? 'correct' : (item === selected ? 'wrong' : 'idle')) : (item === selected ? 'selected' : 'idle')}}"
+        bind:select="onSelect"
+      />
+    </view>
+
+    <view wx:else class="spell-area">
+      <input
+        class="spell-input"
+        value="{{inputValue}}"
+        placeholder="输入单词"
+        disabled="{{feedback !== ''}}"
+        confirm-type="done"
+        bindinput="onInput"
+        bindconfirm="onSubmit"
+      />
+      <button class="btn-primary" bindtap="onSubmit" disabled="{{feedback !== '' || !inputValue}}">提交</button>
+    </view>
+
+    <view wx:if="{{feedback}}" class="feedback {{feedback}}">
+      <text wx:if="{{feedback === 'correct'}}">答对了</text>
+      <text wx:else>答错了，正确答案是「{{current.answer}}」，本题已加入本轮末尾。</text>
+    </view>
+
+    <button wx:if="{{feedback}}" class="btn-primary next-btn" bindtap="continueNext">继续</button>
+  </view>
+</view>
+
+<view class="page result" wx:if="{{finished}}">
+  <text class="eyebrow">Round Complete</text>
+  <text class="display">正确率 {{accuracy}}%</text>
+  <text class="lede">首次答对 {{correct}} / {{total}} 题 · 用时 {{durationText}}</text>
+  <view class="result-actions">
+    <button class="btn-ghost" bindtap="goReview">查看复习队列</button>
+    <button class="btn-primary" bindtap="backHome">{{wordbookId ? '返回生词列表' : '返回首页'}}</button>
+  </view>
+</view>
+
+<view class="page" wx:if="{{loading}}">
+  <view class="empty">
+    <text class="display">正在加载词库…</text>
+    <text class="lede">首次加载需下载词条数据，请稍候。</text>
+  </view>
+</view>
+
+<view class="page" wx:if="{{empty}}">
+  <view class="empty">
+    <text class="display">没有可练习的词</text>
+    <text class="lede">先完成一轮学习，再来小测。</text>
+  </view>
+  <button class="btn-ghost" bindtap="backHome">返回</button>
+</view>
